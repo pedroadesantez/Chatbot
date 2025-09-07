@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 210 40% 8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 40% 8%;
+    --radius: 0.5rem;
+    
+    /* PS-Chat Professional Colors */
+    --ps-primary: 210 100% 12%;
+    --ps-secondary: 195 100% 50%;
+    --ps-accent: 173 58% 39%;
+    --ps-surface: 210 40% 98%;
+    --ps-surface-dark: 210 40% 8%;
+    --ps-glass: 210 40% 98% / 0.85;
+    --ps-glow: 195 100% 50% / 0.15;
+    --ps-text: 222.2 84% 4.9%;
+    --ps-text-muted: 215.4 16.3% 46.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    
+    /* PS-Chat Dark Professional Colors */
+    --ps-primary: 195 100% 50%;
+    --ps-secondary: 173 58% 39%;
+    --ps-accent: 142 76% 36%;
+    --ps-surface: 217.2 32.6% 17.5%;
+    --ps-surface-dark: 222.2 84% 4.9%;
+    --ps-glass: 217.2 32.6% 17.5% / 0.85;
+    --ps-glow: 195 100% 50% / 0.2;
+    --ps-text: 210 40% 98%;
+    --ps-text-muted: 215 20.2% 65.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground relative;
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--ps-surface)) 50%, 
+      hsl(var(--background)) 100%);
+    min-height: 100vh;
+  }
+  
+  .dark body {
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--ps-surface-dark)) 50%, 
+      hsl(var(--background)) 100%);
+  }
+}
+
+@layer components {
+  /* Modern Glass-morphism Styles */
+  .ps-glass {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: hsl(var(--ps-glass));
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .ps-gradient-primary {
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-secondary)) 100%);
+  }
+  
+  .ps-gradient-text {
+    color: hsl(var(--ps-primary));
+    font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  .ps-gradient-text-subtle {
+    background: linear-gradient(90deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-secondary)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  /* Enhanced Message Bubbles */
+  .chat-bubble-user {
+    @apply ml-auto max-w-[80%] rounded-2xl rounded-tr-md px-6 py-3 shadow-lg relative;
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-secondary)) 100%);
+    color: white;
+    box-shadow: 0 4px 20px 0 hsl(var(--ps-glow));
+    border: 1px solid hsl(var(--ps-secondary)) / 0.2;
+    min-width: 60px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    display: block;
+  }
+  
+  .chat-bubble-assistant {
+    @apply mr-auto max-w-[80%] rounded-2xl rounded-tl-md px-6 py-3 shadow-lg relative ps-glass;
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border)) / 0.5;
+    background: hsl(var(--ps-glass));
+    min-width: 60px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    display: block;
+  }
+  
+  /* Enhanced Header */
+  .ps-header {
+    @apply ps-glass border-b border-border/50;
+    backdrop-filter: blur(20px);
+    background: hsl(var(--ps-glass));
+  }
+  
+  /* Modern Input Area */
+  .ps-input-area {
+    @apply ps-glass border-t border-border/50 relative;
+    backdrop-filter: blur(20px);
+  }
+  
+  .ps-input {
+    @apply ps-glass rounded-2xl border border-border/50 px-6 py-4 text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-all;
+    backdrop-filter: blur(16px);
+  }
+  
+  .ps-send-button {
+    @apply ps-gradient-primary text-white rounded-2xl px-6 py-3 font-medium transition-all hover:scale-105 active:scale-95 shadow-lg;
+    box-shadow: 0 4px 16px 0 hsl(var(--ps-glow));
+    border: 1px solid hsl(var(--ps-secondary)) / 0.3;
+  }
+  
+  /* Enhanced Button Styles */
+  .ps-button {
+    @apply ps-glass border border-border/50 rounded-xl px-4 py-2 font-medium transition-all hover:scale-105 active:scale-95 shadow-md;
+    backdrop-filter: blur(16px);
+    background: hsl(var(--ps-glass));
+    color: hsl(var(--foreground));
+  }
+  
+  .ps-icon-button {
+    @apply ps-glass border border-border/50 rounded-xl p-3 transition-all hover:scale-105 active:scale-95 shadow-md;
+    backdrop-filter: blur(16px);
+    background: hsl(var(--ps-glass));
+    color: hsl(var(--foreground));
+  }
+  
+  /* Typing Indicator */
+  .typing-indicator {
+    @apply flex items-center space-x-1;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 rounded-full animate-bounce;
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-accent)) 100%);
+    animation-delay: 0ms;
+  }
+  
+  .typing-dot:nth-child(2) {
+    animation-delay: 150ms;
+  }
+  
+  .typing-dot:nth-child(3) {
+    animation-delay: 300ms;
+  }
+  
+  /* Gradient Animations */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .ps-gradient-animated {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  /* Glow Effects */
+  .ps-glow {
+    position: relative;
+  }
+  
+  .ps-glow::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-accent)) 100%);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .ps-glow:hover::before {
+    opacity: 0.7;
+  }
+  
+  /* Custom Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--ps-glass));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-primary)) 0%, 
+      hsl(var(--ps-secondary)) 100%);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+      hsl(var(--ps-secondary)) 0%, 
+      hsl(var(--ps-accent)) 100%);
+  }
+}

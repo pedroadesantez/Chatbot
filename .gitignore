@@ -1,9 +1,12 @@
-# Node & Next.js build files
-node_modules
-.next
-dist
-*.log
+# Dependencies
+node_modules/
 
-# OS files
-.DS_Store
-Thumbs.db
+# Next.js build
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
