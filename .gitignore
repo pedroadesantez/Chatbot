@@ -1,0 +1,9 @@
+# Node & Next.js build files
+node_modules
+.next
+dist
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
